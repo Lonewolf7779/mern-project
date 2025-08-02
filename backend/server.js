@@ -32,6 +32,16 @@ app.post("/api/products",async (req,res)=>{
    
 });
 
+app.delete("/api/products/:id",async(req,res)=>{
+  const { id } = req.params;
+  // console.log("id:",id);
+  try {
+    await Product.find
+  } catch (error) {
+    
+  }
+});
+
 console.log("MONGO_URI:", process.env.MONGO_URI); // 👈 Check if it's still undefined
 
 app.listen(5000, () => {
