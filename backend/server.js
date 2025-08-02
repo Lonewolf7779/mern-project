@@ -8,10 +8,10 @@ dotenv.config(); // Must come AFTER checking path
 const app = express();
 
 app.use(express.json()); //middleware to parse incoming JSON
+//allows us to accept the JSON data in the req.body
 
-app.post("/products",async (req,res)=>{
-  const product = req.body;
-   //user will send the data
+app.post("/api/products",async (req,res)=>{
+  const product = req.body; //user will send the data
 
    if(!product.name || !product.price || !product.image){
     return res.status(400).json({success:false , message:"Please provide all the fields"});
@@ -22,6 +22,7 @@ app.post("/products",async (req,res)=>{
    try
    {
     await newProduct.save();
+    res.status(201).json({ success: true, product: newProduct });
    }
    catch(error)
    {
